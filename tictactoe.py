@@ -1,14 +1,14 @@
 """
 Cameron Barrett
 Elder Hunter
-Tic Tac Toe Assignment
 CSE 210
+W02 Prove: Developer - Solo Code Submission
+Tic-Tac-Toe
 01/12/2021
 """
 
 winner = None
 game_running = True
-player_pos = {"X":[], "O":[]}
 
 def main():
     global game_running
@@ -16,11 +16,11 @@ def main():
     board = draw_board()
     while game_running:
         display_board(board)
-        player_pos = player_turn(turn, board)
+        player_turn(turn, board)
         turn = flip_player(turn)
-        if check_for_winner(board) == "X" or check_for_winner(board) == "O":
+        if check_for_winner(board) == "x" or check_for_winner(board) == "o":
             game_running = False
-        elif check_for_tie(player_pos) == True:
+        elif check_for_tie(board) == True:
             game_running = False
         else:
             game_running = True
@@ -30,12 +30,6 @@ def main():
     else:
         print("Tie!")
     print("Good game. Thanks for playing!")
-
-def flip_player(turn):
-    if turn == "" or turn == "O":
-        return "X"
-    else:
-        return "O"
 
 def draw_board():
     board = []
@@ -49,24 +43,6 @@ def display_board(board):
     print(f"{board[3]}|{board[4]}|{board[5]}")
     print('-+-+-')
     print(f"{board[6]}|{board[7]}|{board[8]}\n")
-
-def player_turn(player, board):
-    valid = False
-    bad_input = True
-    while bad_input:
-        try:
-            while not valid:
-                position = int(input(f"{player}'s turn to choose a square (1-9): "))
-                if board[position - 1] != "X" and board[position - 1] != "O":
-                    valid = True
-                else:
-                    print("\nPosition already chosen. Choose a different position.\n")
-            board[position - 1] = player
-            player_pos[player].append(position)
-            bad_input = False
-        except:
-            print("\nPlease type a number between (1-9)\n")
-    return player_pos
 
 def check_for_winner(board):
     global winner
@@ -116,10 +92,33 @@ def check_diagonals(board):
         return board[2]
     return
 
-def check_for_tie(player_pos):
-    if len(player_pos["X"]) + len(player_pos["O"]) == 9:
-        return True
-    return False
+def check_for_tie(board):
+    for position in range(len(board)):
+        if board[position] in range(len(board)):
+            return False
+    return True
+
+def player_turn(player, board):
+    valid = False
+    bad_input = True
+    while bad_input:
+        try:
+            while not valid:
+                position = int(input(f"{player}'s turn to choose a square (1-9): "))
+                if board[position - 1] != "x" and board[position - 1] != "o":
+                    valid = True
+                else:
+                    print("\nPosition already chosen. Choose a different position.\n")
+            board[position - 1] = player
+            bad_input = False
+        except:
+            print("\nPlease type a number between (1-9)\n")
+
+def flip_player(turn):
+    if turn == "" or turn == "o":
+        return "x"
+    else:
+        return "o"
 
 if __name__ == "__main__":
     main()
