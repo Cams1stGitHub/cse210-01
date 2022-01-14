@@ -6,6 +6,8 @@ CSE 210
 01/12/2021
 """
 
+# NEW
+
 winner = None
 game_running = True
 player_pos = {"X":[], "O":[]}
