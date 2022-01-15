@@ -1,6 +1,7 @@
 """
 Cameron Barrett
 Elder Hunter
+W02 Prove: Developer - Solo Code Submission
 Tic Tac Toe Assignment
 CSE 210
 01/12/2021
