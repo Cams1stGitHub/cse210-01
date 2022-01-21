@@ -1,5 +1,11 @@
-import random
+"""
+Cameron Barrett
+Elder Hunter
+CSE 210
+W03 Prepare: Articulate
+"""
 
+import random
 
 # TODO: Implement the Die class as follows...
 
